@@ -5,6 +5,7 @@ using TasksApi.Data;
 using TasksApi.Helpers;
 using TasksApi.Models;
 using TasksApi.Services;
+using WebApi.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +35,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddTransient<ITokenService, TokenService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<ITaskService, TaskService>();
+builder.Services.AddSwaggerExtension();
 
 var app = builder.Build();
 
