@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TasksApi.Controllers
 {
+    [ApiController]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class BaseApiController : ControllerBase
     {
         protected int UserID => int.Parse(FindClaim(ClaimTypes.NameIdentifier));

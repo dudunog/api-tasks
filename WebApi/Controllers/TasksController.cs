@@ -6,9 +6,8 @@ using TasksApi.Models.Response;
 
 namespace TasksApi.Controllers
 {
+    [ApiVersion("1.0")]
     [Authorize]
-    [Route("api/[controller]")]
-    [ApiController]
     public class TasksController : BaseApiController
     {
         private readonly ITaskService taskService;

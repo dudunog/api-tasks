@@ -36,6 +36,7 @@ builder.Services.AddTransient<ITokenService, TokenService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<ITaskService, TaskService>();
 builder.Services.AddSwaggerExtension();
+builder.Services.AddApiVersioningExtension();
 
 var app = builder.Build();
 
@@ -43,7 +44,9 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "TasksApi");
+    });
 }
 
 app.UseHttpsRedirection();
