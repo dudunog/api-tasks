@@ -38,11 +38,20 @@ builder.Services.AddTransient<ITaskService, TaskService>();
 builder.Services.AddSwaggerExtension();
 builder.Services.AddApiVersioningExtension();
 
+if (builder.Environment.IsDevelopment())
+    builder.Services.AddMiniProfiler(options => 
+        options.RouteBasePath = "/profiler").AddEntityFramework();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    var logger = app.Logger;
+    logger.LogInformation("Enabling the MiniProfiler Middleware");
+
+    app.UseMiniProfiler();
+
     app.UseSwagger();
     app.UseSwaggerUI(c => {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "TasksApi");

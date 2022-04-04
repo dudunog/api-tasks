@@ -61,7 +61,9 @@ namespace TasksApi.Services
  
         public async Task<GetTasksResponse> GetTasks(int userId)
         {
-            IEnumerable<Models.Entities.Task> tasks = await tasksDbContext.Tasks.Where(t => t.UserId == userId).ToListAsync();
+            IEnumerable<Models.Entities.Task> tasks = await tasksDbContext.Tasks
+                                                      .Where(t => t.UserId == userId)
+                                                          .ToListAsync();
  
             if (tasks.Count() == 0)
             {
